@@ -1,0 +1,28 @@
+{
+  "name": "Adrian Andersen",
+  "title": "Industrial Engineer & Operations Strategist",
+  "description": "Strategic Industrial Engineer with dual Norwegian-Peruvian background. Master's candidate in Operations Management specializing in Lean methodologies, data-driven optimization, and cross-cultural operational excellence.",
+  "tagline": "Bridging technical rigor with international commercial viability.",
+  "aboutMe": "I'm an Industrial Engineer with a dual Norwegian-Peruvian background, currently completing my Master's in Operations Management in Valencia, Spain. My professional identity is defined by a data-first mindset and a relentless drive for operational excellence. I specialize in bridging the gap between technical rigor and international commercial viability.\n\nBut there's more to me than spreadsheets and process flows. On the golf course, I practice strategic precision. At the piano, I balance mathematical structure with creative fluidity. Whether I'm cheering for Liverpool FC or hiking through forests, I believe a well-rounded professional is a more effective leader. I don't just look for a job — I look for a mentorship environment where I can absorb high-level knowledge and extract the maximum potential from every challenge.",
+  "skills": [
+    "Lean Six Sigma (DMAIC)",
+    "Advanced Excel & VBA",
+    "Power BI",
+    "SAP & MES Systems",
+    "TPM Methodology",
+    "ISO 9001/14001",
+    "Process Modeling",
+    "Supply Chain Management",
+    "Minitab / RStudio",
+    "Data-Driven Optimization"
+  ],
+  "social": {
+    "email": "adrianandersen123@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/adrian-andersen-04933b286/"
+  },
+  "stats": [
+    { "value": "4", "label": "Countries worked in" },
+    { "value": "3", "label": "Languages spoken" },
+    { "value": "MSc", "label": "Operations Management" }
+  ]
+}
