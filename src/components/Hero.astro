@@ -53,18 +53,22 @@ import { siteConfig } from "../config";
           {siteConfig.tagline}
         </p>
 
-        <!-- CTA Button -->
+        <!-- CTA Button with clipboard fallback for desktop -->
         {siteConfig.social?.email && (
           <a
             href={`mailto:${siteConfig.social.email}`}
-            class="hero-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium transition-transform duration-200 hover:scale-105 mb-6"
+            class="hero-cta email-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium transition-transform duration-200 hover:scale-105 mb-2 relative"
             style={`background-color: ${siteConfig.highlightColor}`}
+            data-email={siteConfig.social.email}
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            Get in Touch
+            <span class="cta-text">Get in Touch</span>
           </a>
+        )}
+        {siteConfig.social?.email && (
+          <p class="text-sm text-gray-500 mb-6">{siteConfig.social.email}</p>
         )}
 
         <!-- Social Links -->
@@ -123,6 +127,26 @@ import { siteConfig } from "../config";
     )}
   </div>
 </section>
+
+<!-- Email clipboard fallback for desktop -->
+<script type="module">
+  document.querySelectorAll('.email-cta').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const email = btn.dataset.email;
+      // Try mailto first — if it fails (no email client), copy to clipboard
+      setTimeout(() => {
+        navigator.clipboard.writeText(email).then(() => {
+          const text = btn.querySelector('.cta-text');
+          if (text) {
+            const orig = text.textContent;
+            text.textContent = 'Email copied!';
+            setTimeout(() => { text.textContent = orig; }, 2000);
+          }
+        });
+      }, 300);
+    });
+  });
+</script>
 
 <!-- Bottom Accent Bar -->
 <div
