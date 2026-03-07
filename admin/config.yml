@@ -1,0 +1,86 @@
+backend:
+  name: github
+  repo: cofoundy/portfolio-adrian-andersen
+  branch: main
+  base_url: https://decap-oauth-proxy-production.up.railway.app
+
+site_url: https://adrian-andersen.cofoundy.dev
+
+media_folder: "public"
+public_folder: "/"
+
+collections:
+  - name: "profile"
+    label: "Profile"
+    files:
+      - name: "about"
+        label: "About & Contact"
+        file: "src/data/profile.json"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "About Me", name: "aboutMe", widget: "markdown" }
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            field: { label: "Skill", name: "skill", widget: "string" }
+          - label: "Social"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+  - name: "experience"
+    label: "Experience"
+    folder: "src/data/experience"
+    create: true
+    slug: "{{fields.company}}"
+    sortable_fields: ["order"]
+    fields:
+      - { label: "Company", name: "company", widget: "string" }
+      - { label: "Job Title", name: "title", widget: "string" }
+      - { label: "Date Range", name: "dateRange", widget: "string" }
+      - { label: "Order (1 = most recent)", name: "order", widget: "number", value_type: "int" }
+      - label: "Bullet Points"
+        name: "bullets"
+        widget: "list"
+        field: { label: "Bullet", name: "bullet", widget: "string" }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "src/data/projects"
+    create: true
+    slug: "{{fields.name}}"
+    fields:
+      - { label: "Project Name", name: "name", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - label: "Skills/Tags"
+        name: "skills"
+        widget: "list"
+        field: { label: "Skill", name: "skill", widget: "string" }
+
+  - name: "education"
+    label: "Education"
+    folder: "src/data/education"
+    create: true
+    slug: "{{fields.school}}"
+    fields:
+      - { label: "School", name: "school", widget: "string" }
+      - { label: "Degree", name: "degree", widget: "string" }
+      - { label: "Date Range", name: "dateRange", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - label: "Achievements"
+        name: "achievements"
+        widget: "list"
+        field: { label: "Achievement", name: "achievement", widget: "string" }
