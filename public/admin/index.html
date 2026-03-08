@@ -5,8 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Adrian Andersen - Content Manager</title>
+    <style>
+      /* Preview panel styles */
+      .preview-profile { font-family: 'Source Sans 3', sans-serif; max-width: 600px; padding: 24px; color: #333; }
+      .preview-profile h1 { font-family: 'Libre Baskerville', serif; font-size: 28px; color: #4A5D3A; margin: 0 0 4px; }
+      .preview-profile .title { font-size: 16px; color: #AD6D5F; margin-bottom: 16px; }
+      .preview-profile .tagline { font-style: italic; color: #666; margin-bottom: 20px; font-size: 14px; }
+      .preview-profile .about { line-height: 1.6; font-size: 14px; margin-bottom: 20px; }
+      .preview-profile .skills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+      .preview-profile .skill { background: #4A5D3A15; color: #4A5D3A; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+      .preview-profile .stats { display: flex; gap: 24px; }
+      .preview-profile .stat { text-align: center; }
+      .preview-profile .stat-value { font-size: 24px; font-weight: 700; color: #4A5D3A; }
+      .preview-profile .stat-label { font-size: 11px; color: #888; text-transform: uppercase; }
+      .preview-profile .social { font-size: 13px; color: #666; margin-top: 16px; }
+      .preview-profile .social a { color: #AD6D5F; }
+
+      .preview-experience { font-family: 'Source Sans 3', sans-serif; max-width: 600px; padding: 24px; color: #333; }
+      .preview-experience h2 { font-family: 'Libre Baskerville', serif; font-size: 20px; color: #4A5D3A; margin: 0 0 4px; }
+      .preview-experience .role { font-size: 15px; color: #AD6D5F; margin-bottom: 4px; }
+      .preview-experience .date { font-size: 13px; color: #888; margin-bottom: 12px; }
+      .preview-experience ul { padding-left: 20px; line-height: 1.7; font-size: 14px; }
+
+      .preview-project { font-family: 'Source Sans 3', sans-serif; max-width: 600px; padding: 24px; color: #333; }
+      .preview-project h2 { font-family: 'Libre Baskerville', serif; font-size: 20px; color: #4A5D3A; margin: 0 0 8px; }
+      .preview-project .desc { line-height: 1.6; font-size: 14px; margin-bottom: 12px; }
+      .preview-project .link { color: #AD6D5F; font-size: 13px; }
+      .preview-project .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+      .preview-project .tag { background: #4A5D3A15; color: #4A5D3A; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+
+      .preview-education { font-family: 'Source Sans 3', sans-serif; max-width: 600px; padding: 24px; color: #333; }
+      .preview-education h2 { font-family: 'Libre Baskerville', serif; font-size: 20px; color: #4A5D3A; margin: 0 0 4px; }
+      .preview-education .degree { font-size: 15px; color: #AD6D5F; margin-bottom: 4px; }
+      .preview-education .date { font-size: 13px; color: #888; margin-bottom: 12px; }
+      .preview-education ul { padding-left: 20px; line-height: 1.7; font-size: 14px; }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Profile preview
+      const ProfilePreview = createClass({
+        render: function () {
+          const entry = this.props.entry;
+          const d = entry.get('data');
+          const skills = d.get('skills');
+          const social = d.get('social');
+          const stats = d.get('stats');
+
+          return h('div', { className: 'preview-profile' },
+            h('h1', {}, d.get('name')),
+            h('div', { className: 'title' }, d.get('title')),
+            h('div', { className: 'tagline' }, d.get('tagline')),
+            h('div', { className: 'about' },
+              h(this.props.widgetFor('aboutMe'))
+            ),
+            skills && h('div', { className: 'skills' },
+              skills.map(function (skill, i) {
+                return h('span', { className: 'skill', key: i }, skill);
+              })
+            ),
+            stats && h('div', { className: 'stats' },
+              stats.map(function (stat, i) {
+                return h('div', { className: 'stat', key: i },
+                  h('div', { className: 'stat-value' }, stat.get('value')),
+                  h('div', { className: 'stat-label' }, stat.get('label'))
+                );
+              })
+            ),
+            social && h('div', { className: 'social' },
+              social.get('email') && h('div', {}, '✉ ', social.get('email')),
+              social.get('linkedin') && h('div', {},
+                h('a', { href: social.get('linkedin'), target: '_blank' }, 'LinkedIn Profile')
+              )
+            )
+          );
+        }
+      });
+      CMS.registerPreviewTemplate('about', ProfilePreview);
+
+      // Experience preview
+      const ExperiencePreview = createClass({
+        render: function () {
+          const d = this.props.entry.get('data');
+          const bullets = d.get('bullets');
+          return h('div', { className: 'preview-experience' },
+            h('h2', {}, d.get('company')),
+            h('div', { className: 'role' }, d.get('title')),
+            h('div', { className: 'date' }, d.get('dateRange')),
+            bullets && h('ul', {},
+              bullets.map(function (b, i) { return h('li', { key: i }, b); })
+            )
+          );
+        }
+      });
+      CMS.registerPreviewTemplate('experience', ExperiencePreview);
+
+      // Project preview
+      const ProjectPreview = createClass({
+        render: function () {
+          const d = this.props.entry.get('data');
+          const skills = d.get('skills');
+          return h('div', { className: 'preview-project' },
+            h('h2', {}, d.get('name')),
+            h('div', { className: 'desc' }, d.get('description')),
+            d.get('link') && h('a', { className: 'link', href: d.get('link'), target: '_blank' }, d.get('link')),
+            skills && h('div', { className: 'tags' },
+              skills.map(function (s, i) { return h('span', { className: 'tag', key: i }, s); })
+            )
+          );
+        }
+      });
+      CMS.registerPreviewTemplate('projects', ProjectPreview);
+
+      // Education preview
+      const EducationPreview = createClass({
+        render: function () {
+          const d = this.props.entry.get('data');
+          const achievements = d.get('achievements');
+          return h('div', { className: 'preview-education' },
+            h('h2', {}, d.get('school')),
+            h('div', { className: 'degree' }, d.get('degree')),
+            h('div', { className: 'date' }, d.get('dateRange')),
+            achievements && h('ul', {},
+              achievements.map(function (a, i) { return h('li', { key: i }, a); })
+            )
+          );
+        }
+      });
+      CMS.registerPreviewTemplate('education', EducationPreview);
+    </script>
   </body>
 </html>
