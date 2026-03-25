@@ -1,0 +1,136 @@
+% Harvard-Format Professional CV — Adrian Andersen
+% Compile with: xelatex cv-andersen.tex
+
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.6in, top=0.5in, bottom=0.5in]{geometry}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{tabularx}
+
+% --- Fonts ---
+\setmainfont{Times New Roman}
+\setsansfont{Helvetica Neue}
+
+% --- Colors ---
+\definecolor{headrule}{HTML}{2c3e50}
+\definecolor{linkblue}{HTML}{1a5276}
+
+% --- Hyperlinks ---
+\hypersetup{colorlinks=true, urlcolor=linkblue, linkcolor=linkblue, pdfborder={0 0 0}}
+
+% --- Section Formatting ---
+\titleformat{\section}
+  {\large\bfseries\centering}
+  {}
+  {0em}
+  {\vspace{-0.4em}\hrulefill\quad}[\quad\hrulefill\vspace{-0.4em}]
+\titlespacing{\section}{0pt}{0.6em}{0.3em}
+
+% --- List Formatting ---
+\setlist[itemize]{nosep, left=0pt, label=\textbullet, itemsep=1pt, topsep=2pt}
+
+% --- No page numbers ---
+\pagestyle{empty}
+
+% --- Custom Commands ---
+\newcommand{\entry}[4]{%
+  \noindent\textbf{#1} \hfill #2 \par\nopagebreak
+  \textit{#3} \hfill \textit{#4} \par\nopagebreak
+}
+
+\begin{document}
+
+% ============================================
+% HEADER
+% ============================================
+\begin{center}
+  {\LARGE\bfseries Adrian Andersen} \\[4pt]
+  \faIcon{map-marker-alt}\enspace Valencia, Spain
+  \quad\faIcon{envelope}\enspace \href{mailto:adrianandersen123@gmail.com}{adrianandersen123@gmail.com}
+  \quad\faIcon{phone}\enspace +47 402 80 176
+  \\[2pt]
+  \faIcon{linkedin}\enspace \href{https://www.linkedin.com/in/adrian-andersen-04933b286/}{linkedin.com/in/adrian-andersen}
+  \quad\faIcon{globe}\enspace \href{https://adrian-andersen.cofoundy.dev}{adrian-andersen.cofoundy.dev}
+\end{center}
+
+\vspace{-0.4em}
+\noindent\rule{\textwidth}{0.8pt}
+\vspace{-0.8em}
+
+% ============================================
+% EDUCATION
+% ============================================
+\section{Education}
+
+\entry{Universidad Cat\'{o}lica de Valencia}{Valencia, Spain}{Master's in Operations Management}{2025 -- 2026}
+\begin{itemize}
+  \item Capstone: Full-scale blueprint for an international venture --- end-to-end product development, intercontinental logistics, and strategic arbitrage across 3 markets
+\end{itemize}
+\vspace{0.3em}
+
+\entry{Universidad Cat\'{o}lica San Pablo}{Arequipa, Peru}{B.S. in Industrial Engineering \& Management}{}
+\begin{itemize}
+  \item Specialized in Lean Six Sigma methodologies, process optimization, and cross-functional project leadership
+\end{itemize}
+\vspace{0.3em}
+
+% ============================================
+% EXPERIENCE
+% ============================================
+\section{Experience}
+
+\entry{Ardo}{Valencia, Spain}{Operations Intern --- Continuous Improvement}{Nov 2025 -- Mar 2026}
+\begin{itemize}
+  \item Spearheaded TPM methodology implementation across 4 packaging lines, defining precise adjustment points that reduced setup times
+  \item Monitored operational KPIs using SAP and MES systems, identifying real-time bottlenecks and proposing data-driven corrective actions
+  \item Led training and competency mapping for new lines, documenting 10+ SOPs and safety protocols
+\end{itemize}
+\vspace{0.3em}
+
+\entry{Norwegian Air Ambulance Foundation}{Norway}{Community Outreach Representative}{May -- Jul 2025}
+\begin{itemize}
+  \item Engaged 200+ community members through door-to-door outreach campaigns, communicating the foundation's life-saving mission and driving membership sign-ups across multiple Norwegian municipalities
+\end{itemize}
+\vspace{0.3em}
+
+\entry{Volkswagen}{Athens, Greece}{Customer Support Specialist --- Smart Vehicles}{2024}
+\begin{itemize}
+  \item Delivered technical support for digital vehicle diagnostics and hardware engineering, resolving 50+ customer cases across a connected vehicle fleet
+  \item Collaborated with interdisciplinary teams to optimize diagnostic workflows and streamline client-workshop communication
+\end{itemize}
+\vspace{0.3em}
+
+\entry{Arboriza21}{Remote}{Environmental Volunteer Coordinator}{Mar -- Jul 2024}
+\begin{itemize}
+  \item Coordinated administrative operations for environmental reforestation initiatives, overseeing 15+ engineering students in project execution and evaluation
+\end{itemize}
+\vspace{0.3em}
+
+% ============================================
+% CAPSTONE PROJECT
+% ============================================
+\section{Capstone Project}
+
+\entry{International Venture Blueprint}{Master's Thesis}{Lead Researcher \& Strategist}{2025 -- 2026}
+\begin{itemize}
+  \item Engineered a full-scale business model integrating end-to-end product development, intercontinental logistics, and strategic market arbitrage across 3 international markets
+\end{itemize}
+\vspace{0.3em}
+
+% ============================================
+% SKILLS
+% ============================================
+\section{Skills \& Additional}
+
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\textbf{Technical:} & Lean Six Sigma (DMAIC), Advanced Excel \& VBA, Power BI, SAP \& MES Systems, TPM Methodology, ISO 9001/14001, Process Modeling, Supply Chain Management, Minitab, RStudio \\
+\textbf{Languages:} & Norwegian (Native), Spanish (Native), English (C1 Advanced) \\
+\textbf{Interests:} & Golf, Swimming, Piano, Liverpool FC, Board Games, Hiking \\
+\end{tabularx}
+
+\end{document}
